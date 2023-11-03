@@ -48,7 +48,7 @@ const loginController = async (req,res)=>{
         const token  = jwt.sign({_id:user._id},process.env.SECRET_KEY)
         res.status(200).json({
             message:'user login successfull',
-            token,
+            token:token,
             user
         })
     } catch (error) {

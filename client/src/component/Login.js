@@ -26,7 +26,8 @@ const Login = () => {
             try {
                 const data = await axios.post(`http://localhost:8080/api/v1/login`,userData)
                 console.log(data)
-                if(data.data){
+                if(data){
+                localStorage.setItem('token',data.data.token)
                     navigate('/')
                 }
                 
