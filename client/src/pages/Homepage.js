@@ -8,18 +8,7 @@ const Homepage = () => {
 
 //   useEffect(() => {
    
-//     const options = {
-//         method: 'GET',
-//         url: 'https://news67.p.rapidapi.com/v2/country-news',
-//         params: {
-//           fromCountry: 'India',
-//           onlyInternational: 'true'
-//         },
-//         headers: {
-//           'X-RapidAPI-Key': 'd0ac69d9eemsh1f89df2fa236344p103290jsn287566a59054',
-//           'X-RapidAPI-Host': 'news67.p.rapidapi.com'
-//         }
-//       };
+
 
 //     async function fetchData() {
 //         try {
