@@ -6,7 +6,6 @@ const Header = () => {
   const signout = ()=>{
     localStorage.removeItem("token")
     window.location.reload(true);
-   
   }
 
   return (
@@ -50,7 +49,9 @@ const Header = () => {
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to='/'>Home</Link>
         </li>
-       
+        <li className="nav-item">
+          <Link className="nav-link active" aria-current="page" to='/saved'>Saved</Link>
+        </li>
       </ul>
       <span onClick={signout} style={{cursor:"pointer"}}>Sign out</span>
     </div>

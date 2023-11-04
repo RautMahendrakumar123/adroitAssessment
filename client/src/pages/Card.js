@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Mycontext } from '../contex/Context';
+
 
 const Card = ({ data }) => {
+  const { savedArticles, setSavedArticles } = useContext(Mycontext);
+
+  const handleSave = () => {
+    setSavedArticles([...savedArticles, data]);
+  };
+
   return (
-    <div className="card" style={{ width: '18rem' }}>
+    <div className="card" style={{ width: '18rem', marginBottom: '5rem' }}>
       <img src={data.urlToImage} className="card-img-top" alt={data.title} />
       <div className="card-body">
         <h5 className="card-title">{data.title}</h5>
         <p className="card-text">{data.description}</p>
-        {
-          !localStorage.getItem('token')?
-          <div>login to read more</div>
-          :   
+        {!localStorage.getItem('token') ? (
+          <div>Login to read the full article</div>
+        ) : (
           <>
-            <a href={data.url} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-          read more
-        </a> 
-          </>    
-        
-        
-        }
-        
+            <a
+              href={data.url}
+              className="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read more
+            </a>
+            <button
+              type="button"
+              className="btn btn-primary mx-3"
+              onClick={handleSave}
+            >
+              Save article
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

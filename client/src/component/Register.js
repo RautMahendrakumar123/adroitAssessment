@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Header from './Header'
+import { toast } from 'react-toastify'
 
 const Register = () => {
 
@@ -25,7 +27,8 @@ const Handlesubmit = async(e)=>{
     try {
         const data = await axios.post(`http://localhost:8080/api/v1/register`,userData)
         console.log(data)
-        if(data){
+        if(data.status==200){
+          toast.success('registered succefully')
             navigate('/login')
         }
     } catch (error) {
@@ -36,7 +39,9 @@ const Handlesubmit = async(e)=>{
 
 console.log(userData)
 
-    return <div className='register'>
+    return <>
+    <Header />
+    <div className='register'>
     <form onSubmit={Handlesubmit}>
     <div className="mb-3">
       <label htmlFor="exampleInputtext" className="form-label">Your Name</label>
@@ -55,6 +60,8 @@ console.log(userData)
     <button type="submit" className="btn btn-primary">Submit</button>
   </form>
     </div>
+    </>
+    
 }
 
 export default Register

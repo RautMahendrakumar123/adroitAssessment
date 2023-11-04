@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import '../App.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Header from './Header'
+import { toast } from 'react-toastify'
 
 const Login = () => {
 
@@ -26,9 +28,14 @@ const Login = () => {
             try {
                 const data = await axios.post(`http://localhost:8080/api/v1/login`,userData)
                 console.log(data)
-                if(data){
+                if(data.status===200){
                 localStorage.setItem('token',data.data.token)
+                
+                toast.success('login successfull')
                     navigate('/')
+                }
+                else{
+                  toast.error('something went wrong')
                 }
                 
             } catch (error) {
@@ -37,7 +44,9 @@ const Login = () => {
             }
         }
 
-  return <div className='login'>
+  return <>
+  <Header />
+  <div className='login'>
   <form onSubmit={Handlesubmit}>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -51,6 +60,7 @@ const Login = () => {
   <button type="submit" className="btn btn-primary">Submit</button>
 </form>
   </div>
+  </> 
 }
 
 export default Login

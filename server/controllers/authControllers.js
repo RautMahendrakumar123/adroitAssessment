@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
-const { EncryptPassword, comparePassword } = require('../helper/authHelper');
+const bcrypt = require('bcrypt')
+const  EncryptPassword = require('../helper/authHelper');
 const userModel = require('../models/userModel')
 
 const registerController = async (req,res)=>{
@@ -20,7 +21,7 @@ const registerController = async (req,res)=>{
             password:hashpass
         })
         await user.save()
-        res.status(201).json({
+        res.status(200).json({
             message:'user registered successfully',
             user
         })
@@ -39,9 +40,10 @@ const loginController = async (req,res)=>{
         }
         const user = await userModel.findOne({email})
         if(!user){
-          return res.status(404).json({error:'user not found'})
+            return res.status(400).json({error:'user not found'})
+           
         }
-        const compare = comparePassword(password,user.password)
+        const compare = await bcrypt.compare(password,user.password)
         if(!compare){
            return res.status(400).json({error:'invalid password'})
         }
@@ -51,6 +53,7 @@ const loginController = async (req,res)=>{
             token:token,
             user
         })
+        
     } catch (error) {
         res.status(500).json({error:'something went wrong'})
         console.log(error)

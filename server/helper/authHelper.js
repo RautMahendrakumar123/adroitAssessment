@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt')
 
+const bcrypt = require('bcrypt')
 
 const EncryptPassword = async(password)=>{
 try {
@@ -11,12 +11,6 @@ try {
 }
 }
 
-const comparePassword = async(password,hashPassword)=>{
-    try {
-        return bcrypt.compare(password,hashPassword)
-    } catch (error) {
-        console.log(error)
-    }
-}
 
-module.exports={EncryptPassword,comparePassword}
+
+module.exports=EncryptPassword
