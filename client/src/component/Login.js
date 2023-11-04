@@ -34,12 +34,12 @@ const Login = () => {
                 toast.success('login successfull')
                     navigate('/')
                 }
-                else{
-                  toast.error('something went wrong')
-                }
+                // else{
+                //   toast.error('something went wrong')
+                // }
                 
             } catch (error) {
-                console.log(error)
+                toast.error('something went wrong')
                 
             }
         }

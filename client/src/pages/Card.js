@@ -16,7 +16,7 @@ const Card = ({ data }) => {
         <h5 className="card-title">{data.title}</h5>
         <p className="card-text">{data.description}</p>
         {!localStorage.getItem('token') ? (
-          <div>Login to read the full article</div>
+          <div>Login to read the full article...</div>
         ) : (
           <>
             <a

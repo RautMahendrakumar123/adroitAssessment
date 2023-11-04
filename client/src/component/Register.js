@@ -32,7 +32,7 @@ const Handlesubmit = async(e)=>{
             navigate('/login')
         }
     } catch (error) {
-        console.log(error)
+        toast.error('something went wrong')
         
     }
 }

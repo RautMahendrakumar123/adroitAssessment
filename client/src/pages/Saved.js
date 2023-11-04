@@ -1,16 +1,24 @@
 import React, { useContext } from 'react';
 import { Mycontext } from '../contex/Context';
-import Card from './Card';
+import Header from '../component/Header';
+import SavedCard from './SavedCard';
 
 const Saved = () => {
   const { savedArticles } = useContext(Mycontext);
 
   return (
-    <div>
+    <>
+    <Header />
+    <h2>
+      Saved Articles
+    </h2>
+     <div className='d-flex'>
       {savedArticles.map((article, index) => (
-        <Card key={index} data={article} />
+        <SavedCard key={index} data={article} />
       ))}
     </div>
+    </>
+   
   );
 }
 
